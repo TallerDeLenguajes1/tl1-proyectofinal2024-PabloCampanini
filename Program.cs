@@ -1,2 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using System.Text;
+
+Console.OutputEncoding = Encoding.UTF8; // Establecer la codificación de la consola a UTF-8

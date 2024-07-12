@@ -1,27 +1,29 @@
+namespace EspacioPersonaje;
+
 using DatosYCaracteristicas;
 
 public class Personaje
 {
     //Campos
-    private Datos datosPersonaje;
-    private Caracteristicas caracteristicasPersonaje;
+    private Datos datos;
+    private Caracteristicas caracteristicas;
 
     //Constructor de un personaje
     public Personaje(Datos datosPersonaje, Caracteristicas caracteristicasPersonaje)
     {
-        this.DatosPersonaje = datosPersonaje;
-        this.CaracteristicasPersonaje = caracteristicasPersonaje;
+        this.Datos= datos;
+        this.Caracteristicas= caracteristicas;
     }
 
     //Propiedades
-    public Datos DatosPersonaje
+    public Datos Datos
     {
-        get => datosPersonaje;
-        set => datosPersonaje = value;
+        get => datos;
+        set => datos = value;
     }
-    public Caracteristicas CaracteristicasPersonaje
+    public Caracteristicas Caracteristicas
     {
-        get => caracteristicasPersonaje;
-        set => caracteristicasPersonaje = value;
+        get => caracteristicas;
+        set => caracteristicas = value;
     }
 }
