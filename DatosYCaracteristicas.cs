@@ -7,17 +7,15 @@ public class Datos
     private DateTime fechaDeNacimiento;
     private int edad;   //Entre 0 a 300
     private string raza;
-    private string afinidad;
 
     //Constructor
-    public Datos(string raza, string afinidad, string nombre, string apodo, DateTime fechaDeNacimiento, int edad)
+    public Datos(string raza, string nombre, string apodo, DateTime fechaDeNacimiento, int edad)
     {
         this.Nombre = nombre;
         this.Apodo = apodo;
         this.FechaDeNacimiento = fechaDeNacimiento;
         this.Edad = edad;
         this.Raza = raza;
-        this.Afinidad = afinidad;
     }
 
     //Propiedades
@@ -26,7 +24,6 @@ public class Datos
     public DateTime FechaDeNacimiento { get => fechaDeNacimiento; set => fechaDeNacimiento = value; }
     public int Edad { get => edad; set => edad = value; }
     public string Raza { get => raza; set => raza = value; }
-    public string Afinidad { get => afinidad; set => afinidad = value; }
 }
 
 public class Caracteristicas
@@ -39,6 +36,14 @@ public class Caracteristicas
     private int armadura;   //1 a 10
     private int salud;      //100
 
+    //Propiedades
+    public int Velocidad { get => velocidad; set => velocidad = value; }
+    public int Destreza { get => destreza; set => destreza = value; }
+    public int Fuerza { get => fuerza; set => fuerza = value; }
+    public int Nivel { get => nivel; set => nivel = value; }
+    public int Armadura { get => armadura; set => armadura = value; }
+    public int Salud { get => salud; set => salud = value; }
+
     //Constructor
     public Caracteristicas(int velocidad, int destreza, int fuerza, int nivel, int armadura, int salud)
     {
@@ -49,12 +54,4 @@ public class Caracteristicas
         this.Armadura = armadura;
         this.Salud = salud;
     }
-
-    //Propiedades
-    public int Velocidad { get => velocidad; set => velocidad = value; }
-    public int Destreza { get => destreza; set => destreza = value; }
-    public int Fuerza { get => fuerza; set => fuerza = value; }
-    public int Nivel { get => nivel; set => nivel = value; }
-    public int Armadura { get => armadura; set => armadura = value; }
-    public int Salud { get => salud; set => salud = value; }
 }

@@ -8,13 +8,6 @@ public class Personaje
     private Datos datos;
     private Caracteristicas caracteristicas;
 
-    //Constructor de un personaje
-    public Personaje(Datos datosPersonaje, Caracteristicas caracteristicasPersonaje)
-    {
-        this.Datos= datos;
-        this.Caracteristicas= caracteristicas;
-    }
-
     //Propiedades
     public Datos Datos
     {
@@ -25,5 +18,12 @@ public class Personaje
     {
         get => caracteristicas;
         set => caracteristicas = value;
+    }
+
+    //Constructor de un personaje
+    public Personaje(Datos datos, Caracteristicas caracteristicas)
+    {
+        this.datos = datos;
+        this.caracteristicas = caracteristicas;
     }
 }
