@@ -28,16 +28,16 @@ public class Personaje
     }
 
     //Metodos
-    public double Ataque(Personaje Atacante)
+    public double Ataque()
     {
         //Variable auxiliar
         double CalculoDaño = 0;
         int AjusteDaño = 300;
 
-        CalculoDaño = (Atacante.Caracteristicas.Destreza * Atacante.Caracteristicas.Fuerza * Atacante.Caracteristicas.Nivel) / (AjusteDaño);
+        CalculoDaño = (Caracteristicas.Destreza * Caracteristicas.Fuerza * Caracteristicas.Nivel) / (AjusteDaño);
 
         //Reduccion del daño debido a la salud
-        if (Atacante.Caracteristicas.Salud <= 50)
+        if (Caracteristicas.Salud <= 50)
         {
             CalculoDaño *= 0.90;
         }
@@ -45,14 +45,14 @@ public class Personaje
         return CalculoDaño;
     }
 
-    public double Defensa(Personaje Defensor)
+    public double Defensa()
     {
         double CalculoDefensa = 0;
 
-        CalculoDefensa = (Defensor.Caracteristicas.Armadura * Defensor.Caracteristicas.Velocidad * (Defensor.Caracteristicas.Destreza / Defensor.Caracteristicas.Fuerza));
+        CalculoDefensa = (Caracteristicas.Armadura * Caracteristicas.Velocidad * (Caracteristicas.Destreza / Caracteristicas.Fuerza));
 
         //Reduccion de la defensa debido a la salud
-        if (Defensor.Caracteristicas.Salud <= 50)
+        if (Caracteristicas.Salud <= 50)
         {
             CalculoDefensa *= 0.95;
         }
