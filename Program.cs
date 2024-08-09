@@ -7,11 +7,11 @@ using EspacioPersonaje;
 Console.OutputEncoding = Encoding.UTF8; // Establecer la codificación de la consola a UTF-8
 
 // Crear la fábrica de personajes
-FabricaDePersonajes fabrica = new FabricaDePersonajes(null, new List<Personaje>());
+FabricaDePersonajes fabrica = new FabricaDePersonajes();
 
 // Crear el personaje del usuario
 Personaje personajeDelUsuario = fabrica.CrearPersonajeUsuario();
-fabrica.PersonajeDelUsuario = personajeDelUsuario;
+
 
 // Mostrar los datos del personaje del usuario
 Console.WriteLine("\n\t*---------- DATOS DE SU PERSONAJE ----------*");

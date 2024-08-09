@@ -23,13 +23,6 @@ public class FabricaDePersonajes
         set => enemigos = value;
     }
 
-    //Constructor
-    public FabricaDePersonajes(Personaje personajeDelUsuario, List<Personaje> enemigos)
-    {
-        this.personajeDelUsuario = personajeDelUsuario;
-        this.enemigos = enemigos;
-    }
-
     //Metodos
     public Personaje CrearPersonajeUsuario()
     {
