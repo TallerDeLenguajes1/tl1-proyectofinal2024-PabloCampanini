@@ -10,7 +10,7 @@ using EspacioMenuPrincipal;
 Console.OutputEncoding = Encoding.UTF8; // Establecer la codificación de la consola a UTF-8
 
 // Mostrar el menú de inicio
-Menu menu = new Menu();
+MenuPrincipal menu = new MenuPrincipal();
 menu.MostrarMenu();
 
 // Crear una instancia de HelperDeJson
