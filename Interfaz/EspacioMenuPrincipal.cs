@@ -11,53 +11,53 @@ public class MenuPrincipal
         while (!opcionValida)
         {
             Console.Clear();
-            // MostrarIntroduccion();
+            MostrarIntroduccion();
             MostrarBienvenida();
             opcionValida = MostrarOpciones();
         }
     }
 
-    // private void MostrarIntroduccion()
-    // {
-    //     // Guardar los colores actuales
-    //     ConsoleColor fondoOriginal = Console.BackgroundColor;
-    //     ConsoleColor textoOriginal = Console.ForegroundColor;
+    private void MostrarIntroduccion()
+    {
+        // Guardar los colores actuales
+        ConsoleColor fondoOriginal = Console.BackgroundColor;
+        ConsoleColor textoOriginal = Console.ForegroundColor;
 
-    //     // Establecer el color de fondo negro y el texto en naranja
-    //     Console.BackgroundColor = ConsoleColor.Black;
-    //     Console.ForegroundColor = ConsoleColor.DarkYellow; // Usar un color de texto naranja
+        // Establecer el color de fondo negro y el texto en naranja
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.DarkYellow; // Usar un color de texto naranja
 
-    //     // Limpiar la consola para aplicar el fondo a toda la pantalla
-    //     Console.Clear();
+        // Limpiar la consola para aplicar el fondo a toda la pantalla
+        Console.Clear();
 
-    //     // Introducción del juego
-    //     string introduccion = "Cada cinco años, un gran torneo se celebra en la vasta y mística tierra de Eldoria.\n" +
-    //                           "Este evento épico reúne a los más valientes y poderosos de todos los rincones del mundo\n" +
-    //                           "para competir por el honor de gobernar. En juego está el control supremo sobre Eldoria,\n" +
-    //                           "una tierra rica en magia y leyendas. Solo el campeón del torneo obtendrá el trono y el derecho a reinar sobre todos los reinos que la componen.";
+        // Introducción del juego
+        string introduccion = "Cada cinco años, un gran torneo se celebra en la vasta y mística tierra de Eldoria.\n" +
+                              "Este evento épico reúne a los más valientes y poderosos de todos los rincones del mundo\n" +
+                              "para competir por el honor de gobernar. En juego está el control supremo sobre Eldoria,\n" +
+                              "una tierra rica en magia y leyendas. Solo el campeón del torneo obtendrá el trono y el derecho a reinar sobre todos los reinos que la componen.";
 
-    //     // Mostrar la introducción caracter a caracter
-    //     foreach (char c in introduccion)
-    //     {
-    //         Console.Write(c);
-    //         // Pausa para que el texto se muestre caracter a caracter
-    //         Thread.Sleep(50); // Aumentar el valor para hacer el texto más lento
-    //     }
+        // Mostrar la introducción caracter a caracter
+        foreach (char c in introduccion)
+        {
+            Console.Write(c);
+            // Pausa para que el texto se muestre caracter a caracter
+            Thread.Sleep(50); // Aumentar el valor para hacer el texto más lento
+        }
 
-    //     // Salto de línea antes del título
-    //     Console.WriteLine("\n");
+        // Salto de línea antes del título
+        Console.WriteLine("\n");
 
-    //     // Pausa antes de borrar la pantalla y mostrar el título
-    //     Console.WriteLine("Preparando el juego...");
-    //     Thread.Sleep(3000); // Pausa de 3 segundos
+        // Pausa antes de borrar la pantalla y mostrar el título
+        Console.WriteLine("Preparando el juego...");
+        Thread.Sleep(3000); // Pausa de 3 segundos
 
-    //     // Limpiar la consola
-    //     Console.Clear();
+        // Limpiar la consola
+        Console.Clear();
 
-    //     // Restaurar los colores originales
-    //     Console.ForegroundColor = ConsoleColor.DarkYellow;
-    //     Console.BackgroundColor = ConsoleColor.Black;
-    // }
+        // Restaurar los colores originales
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.BackgroundColor = ConsoleColor.Black;
+    }
 
     private void MostrarBienvenida()
     {

@@ -19,9 +19,15 @@
 
 ## API
 
-**Random.org Dice Roller** es la API que utilizo, esta permite la simulacion de tiradas de n dados iguales de m caras, donde nosotros podemos solicitar que tpo y cuantos dados necesitamos
+**Rolz.org API** es la API que utilizo, esta permite la simulacion de tiradas de n dados iguales de m caras, donde nosotros podemos solicitar que tipo y cuantos dados necesitamos, ademas, permite obtener los resultados en varios formatos como ser JSON, texto plano o SML. Para ello en la solicitud indicamos la cantidad y el tipo de dado, por ejemplo, si queremos usar 2 dados de 20 caras ponemos la siguiente forma:
 
-La API devuelve algo así:
+- **URL de la API:** "https://rolz.org/api/?<tus tiradas>" , donde <tus tiradas> debe cargarse por ejemplo 2d20.json.
+
+Indicando "CANTIDAD + d + CARAS. extension". En este proyecto uso 1 dado de 20 caras para cada solicitud por lo que el URL quedaria de la siguiente manera: 
+
+- **URL de la API en el proyecto:** "https://rolz.org/api/?1d20.json"
+
+La API devuelve la siguiente estructura al solicitarla con extension .json:
 ```
 {
     [JsonPropertyName("input")]
