@@ -15,25 +15,37 @@ FabricaDePersonajes fabrica = new FabricaDePersonajes();
 Personaje personajeUsuario = fabrica.CrearPersonajeUsuario();
 
 // Crear personajes enemigos
-List<Personaje> enemigos = fabrica.CrearEnemigos();
-
-enemigos.Add(personajeUsuario);
-
-// Mostrar datos del personaje del usuario
+List<Personaje> personajes = fabrica.CrearEnemigos();
+personajes.Add(personajeUsuario);
+// Mostrar datos de todos los personajes
 MostrarPersonaje mostrar = new MostrarPersonaje();
-mostrar.MostrarDatosPersonaje(personajeUsuario);
-
-foreach (Personaje personaje in enemigos)
+Console.WriteLine("Lista de personajes:");
+foreach (var personaje in personajes)
 {
     mostrar.MostrarDatosPersonaje(personaje);
+    Console.WriteLine("----------------------------");
+}
+
+// Guardar los datos de los personajes en un archivo JSON
+HelperDeJson jsonHelper = new HelperDeJson();
+jsonHelper.GuardarArchivoJson("datosPersonajes.json", personajes);
+
+// Leer los datos desde el archivo JSON
+List<Personaje> personajesCargados = jsonHelper.AbrirArchivoJson<List<Personaje>>("datosPersonajes.json");
+Console.WriteLine("\nPersonajes cargados desde el archivo JSON:");
+foreach (var personaje in personajesCargados)
+{
+    mostrar.MostrarDatosPersonaje(personaje);
+    Console.WriteLine("----------------------------");
 }
 
 // Realizar el torneo
 Torneo torneo = new Torneo();
-Personaje ganador = await torneo.RealizarTorneo(enemigos);
+Personaje ganador = await torneo.RealizarTorneo(personajes);
 
 // Mostrar datos del ganador
 Console.WriteLine("\nEl ganador del torneo es:");
 mostrar.MostrarDatosPersonaje(ganador);
+
 
 string hola = Console.ReadLine();

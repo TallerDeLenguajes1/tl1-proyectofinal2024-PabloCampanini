@@ -1,0 +1,138 @@
+[
+  {
+    "Datos": {
+      "Nombre": "Aric Stone",
+      "Apodo": "El Guardi\u00E1n",
+      "FechaDeNacimiento": "1904-05-01T00:00:00",
+      "Edad": 120,
+      "Raza": "Elfo"
+    },
+    "Caracteristicas": {
+      "Velocidad": 8,
+      "Destreza": 3,
+      "Fuerza": 1,
+      "Nivel": 1,
+      "Armadura": 3,
+      "Salud": 100
+    }
+  },
+  {
+    "Datos": {
+      "Nombre": "Gondar Brim",
+      "Apodo": "El Martillo",
+      "FechaDeNacimiento": "1874-08-15T00:00:00",
+      "Edad": 150,
+      "Raza": "Enano"
+    },
+    "Caracteristicas": {
+      "Velocidad": 6,
+      "Destreza": 1,
+      "Fuerza": 1,
+      "Nivel": 10,
+      "Armadura": 3,
+      "Salud": 100
+    }
+  },
+  {
+    "Datos": {
+      "Nombre": "Lira Swift",
+      "Apodo": "La Flecha",
+      "FechaDeNacimiento": "1929-12-22T00:00:00",
+      "Edad": 95,
+      "Raza": "Elfo"
+    },
+    "Caracteristicas": {
+      "Velocidad": 4,
+      "Destreza": 4,
+      "Fuerza": 4,
+      "Nivel": 3,
+      "Armadura": 7,
+      "Salud": 100
+    }
+  },
+  {
+    "Datos": {
+      "Nombre": "Borin Ironfist",
+      "Apodo": "El Invencible",
+      "FechaDeNacimiento": "1864-03-30T00:00:00",
+      "Edad": 160,
+      "Raza": "Enano"
+    },
+    "Caracteristicas": {
+      "Velocidad": 6,
+      "Destreza": 4,
+      "Fuerza": 4,
+      "Nivel": 5,
+      "Armadura": 2,
+      "Salud": 100
+    }
+  },
+  {
+    "Datos": {
+      "Nombre": "Sylas Thorn",
+      "Apodo": "El Sombra",
+      "FechaDeNacimiento": "1994-07-10T00:00:00",
+      "Edad": 30,
+      "Raza": "Humano"
+    },
+    "Caracteristicas": {
+      "Velocidad": 6,
+      "Destreza": 3,
+      "Fuerza": 9,
+      "Nivel": 6,
+      "Armadura": 10,
+      "Salud": 100
+    }
+  },
+  {
+    "Datos": {
+      "Nombre": "Eldric Storm",
+      "Apodo": "El Viento",
+      "FechaDeNacimiento": "1979-11-09T00:00:00",
+      "Edad": 45,
+      "Raza": "Orco"
+    },
+    "Caracteristicas": {
+      "Velocidad": 2,
+      "Destreza": 3,
+      "Fuerza": 4,
+      "Nivel": 7,
+      "Armadura": 4,
+      "Salud": 100
+    }
+  },
+  {
+    "Datos": {
+      "Nombre": "Fiona Greenshade",
+      "Apodo": "La Sabia",
+      "FechaDeNacimiento": "1954-02-05T00:00:00",
+      "Edad": 70,
+      "Raza": "Hobbit"
+    },
+    "Caracteristicas": {
+      "Velocidad": 7,
+      "Destreza": 1,
+      "Fuerza": 10,
+      "Nivel": 10,
+      "Armadura": 9,
+      "Salud": 100
+    }
+  },
+  {
+    "Datos": {
+      "Nombre": "Roku",
+      "Apodo": "",
+      "FechaDeNacimiento": "2000-03-04T00:00:00",
+      "Edad": 24,
+      "Raza": "Hobbit"
+    },
+    "Caracteristicas": {
+      "Velocidad": 10,
+      "Destreza": 5,
+      "Fuerza": 9,
+      "Nivel": 3,
+      "Armadura": 10,
+      "Salud": 100
+    }
+  }
+]
