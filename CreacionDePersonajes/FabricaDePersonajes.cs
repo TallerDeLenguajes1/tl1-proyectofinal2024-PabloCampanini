@@ -40,7 +40,7 @@ public class FabricaDePersonajes
 
         if (IngresaApodo == "s" || IngresaApodo == "S")
         {
-            Console.WriteLine($"Ingrese su apodo {PersonajeDelUsuario.Datos.Nombre}: ");
+            Console.WriteLine($"Ingrese su apodo: ");
             ApodoUsuario = Console.ReadLine();
         }
         else
