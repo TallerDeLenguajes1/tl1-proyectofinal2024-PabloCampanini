@@ -17,7 +17,7 @@ public class Batalla
 
         if (DadosAtacante.Result > DadosDefensor.Result)
         {
-            Console.WriteLine("El atacante obtiene una bonificacion de daño y hace un ataque crítico");
+            Console.WriteLine($"{Ataca.Datos.Nombre} obtiene una bonificacion de daño y hace un ataque crítico");
 
             Daño = (int)((Ataca.Ataque() * 1.1) - Defiende.Defensa());
             
@@ -37,7 +37,7 @@ public class Batalla
         }
         else
         {
-            Console.WriteLine("El defensor obtiene una bonificacion de defensa");
+            Console.WriteLine($"{Defiende.Datos.Nombre} obtiene una bonificacion de defensa");
 
             Daño = (int)(Ataca.Ataque() - (Defiende.Defensa() * 1.1));
 

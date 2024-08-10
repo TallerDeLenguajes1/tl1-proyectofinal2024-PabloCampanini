@@ -14,15 +14,15 @@ Console.OutputEncoding = Encoding.UTF8; // Establecer la codificación de la con
 MenuPrincipal menu = new MenuPrincipal();
 HistorialGanadores historialGanadores = new HistorialGanadores(); // Instancia de HistorialGanadores
 
+// Crear una instancia de HelperDeJson
+HelperDeJson jsonHelper = new HelperDeJson();
+MostrarPersonaje mostrar = new MostrarPersonaje();
+FabricaDePersonajes fabrica = new FabricaDePersonajes();
+Torneo torneo = new Torneo();
+
 while (true)
 {
     menu.MostrarMenu();
-
-    // Crear una instancia de HelperDeJson
-    HelperDeJson jsonHelper = new HelperDeJson();
-    MostrarPersonaje mostrar = new MostrarPersonaje();
-    FabricaDePersonajes fabrica = new FabricaDePersonajes();
-    Torneo torneo = new Torneo();
 
     // Leer opción del menú
     switch (menu.OpcionSeleccionada)
@@ -36,16 +36,19 @@ while (true)
             personajes.Add(personajeUsuario);
 
             // Mostrar datos de todos los personajes
-            Console.WriteLine("Lista de personajes:");
+            Console.WriteLine("\n╔══════════════════════════════════════════════╗");
+            Console.WriteLine("║           COMPETIDORES DEL TORNEO            ║");
+            Console.WriteLine("╚══════════════════════════════════════════════╝");
+
             foreach (var personaje in personajes)
             {
                 mostrar.MostrarDatosPersonaje(personaje);
                 Console.WriteLine("----------------------------");
+                System.Threading.Thread.Sleep(1000); // Esperar 1 segundo entre cada bloque
             }
 
             // Guardar los datos de los personajes en un archivo JSON
             jsonHelper.GuardarArchivoJson("datosPersonajes.json", personajes);
-            Console.WriteLine("Datos de personajes guardados en 'datosPersonajes.json'.");
 
             // Realizar el torneo
             Personaje ganador = await torneo.RealizarTorneo(personajes);
@@ -81,44 +84,48 @@ while (true)
             break;
 
         case 2: // Cargar partida
-            // Leer los datos desde el archivo JSON
-            List<Personaje> personajesCargados = jsonHelper.AbrirArchivoJson<List<Personaje>>("datosPersonajes.json");
-            Console.WriteLine("\nPersonajes cargados desde el archivo JSON:");
-            foreach (var personaje in personajesCargados)
+            if (File.Exists("datosPersonajes.json"))
             {
-                mostrar.MostrarDatosPersonaje(personaje);
-                Console.WriteLine("----------------------------");
-            }
+                // Leer los datos desde el archivo JSON
+                List<Personaje> personajesCargados = jsonHelper.AbrirArchivoJson<List<Personaje>>("datosPersonajes.json");
+                Console.WriteLine("\nPersonajes cargados desde el archivo JSON:");
+                foreach (var personaje in personajesCargados)
+                {
+                    mostrar.MostrarDatosPersonaje(personaje);
+                    Console.WriteLine("----------------------------");
+                }
 
-            // Realizar el torneo con los personajes cargados
-            Personaje ganadorCargado = await torneo.RealizarTorneo(personajesCargados);
+                // Realizar el torneo con los personajes cargados
+                Personaje ganadorCargado = await torneo.RealizarTorneo(personajesCargados);
 
-            // Mostrar datos del ganador
-            Console.WriteLine("\nEl ganador del torneo es:");
-            mostrar.MostrarDatosPersonaje(ganadorCargado);
+                // Mostrar datos del ganador
+                Console.WriteLine("\nEl ganador del torneo es:");
+                mostrar.MostrarDatosPersonaje(ganadorCargado);
 
-            // Agregar el ganador al historial
-            historialGanadores.AgregarCampeonAlHistorial(ganadorCargado);
+                // Agregar el ganador al historial
+                historialGanadores.AgregarCampeonAlHistorial(ganadorCargado);
 
-            // Preguntar si desea salir o volver a jugar con estilo
-            MostrarOpcionesFinales();
+                // Preguntar si desea salir o volver a jugar con estilo
+                MostrarOpcionesFinales();
 
-            int opcionCargada;
-            while (!int.TryParse(Console.ReadLine(), out opcionCargada) || (opcionCargada != 1 && opcionCargada != 2))
-            {
-                Console.WriteLine("Opción no válida. Por favor, seleccione 1 o 2.");
-            }
+                int opcionCargada;
+                while (!int.TryParse(Console.ReadLine(), out opcionCargada) || (opcionCargada != 1 && opcionCargada != 2))
+                {
+                    Console.WriteLine("Opción no válida. Por favor, seleccione 1 o 2.");
+                }
 
-            if (opcionCargada == 2)
-            {
-                Console.Clear();
-                Console.WriteLine("Gracias por jugar...");
-                await Task.Delay(3000); // Esperar 3 segundos
-                Environment.Exit(0);
+                if (opcionCargada == 2)
+                {
+                    menu.MostrarAgradecimiento();
+                }
+                else
+                {
+                    File.Delete("datosPersonajes.json"); // Borrar el archivo de partida guardada
+                }
             }
             else
             {
-                File.Delete("datosPersonajes.json"); // Borrar el archivo de partida guardada
+                Console.WriteLine("No hay partida guardada para cargar.");
             }
 
             break;
@@ -129,8 +136,6 @@ while (true)
             break;
 
         case 4: // Salir
-            Console.WriteLine("Saliendo del juego...");
-            Environment.Exit(0);
             break;
 
         default:
@@ -158,7 +163,7 @@ void MostrarOpcionesFinales()
 
     // Mostrar el recuadro y las opciones
     Console.WriteLine($"{esquinaSuperiorIzquierda}{lineaHorizontal}{esquinaSuperiorDerecha}".PadLeft(margen + ancho + 2));
-    
+
     string[] opciones = new string[]
     {
         "1. Volver a jugar",
@@ -172,8 +177,7 @@ void MostrarOpcionesFinales()
     }
 
     Console.WriteLine($"{esquinaInferiorIzquierda}{lineaHorizontal}{esquinaInferiorDerecha}".PadLeft(margen + ancho + 2));
-    
+
     // Restaurar colores originales
     Console.ResetColor();
 }
-
