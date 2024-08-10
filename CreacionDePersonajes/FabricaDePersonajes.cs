@@ -26,21 +26,23 @@ public class FabricaDePersonajes
     //Metodos
     public Personaje CrearPersonajeUsuario()
     {
-        Console.WriteLine("\n\t*---------- GENERACION DE SU PERSONAJE ----------*");
 
-        //*----- CARGADO DE NOMBRE -----*
-        Console.WriteLine("Ingrese el nombre de su personaje: ");
+        Console.WriteLine("\n╔══════════════════════════════════════════════╗");
+        Console.WriteLine("║          GENERACIÓN DE SU PERSONAJE          ║");
+        Console.WriteLine("╚══════════════════════════════════════════════╝");
+
+        // CARGADO DE NOMBRE
+        Console.Write("\nIngrese el nombre de su personaje: ");
         string NombreUsuario = Console.ReadLine();
 
-        //*----- CARGADO DE APODO -----*
-        Console.WriteLine("¿Quiere ingresar un apodo? S/N");
+        // CARGADO DE APODO
+        Console.Write("\n¿Quiere ingresar un apodo? S/N: ");
         string IngresaApodo = Console.ReadLine();
-
         string ApodoUsuario;
 
-        if (IngresaApodo == "s" || IngresaApodo == "S")
+        if (IngresaApodo.Equals("s", StringComparison.OrdinalIgnoreCase))
         {
-            Console.WriteLine($"Ingrese su apodo: ");
+            Console.Write("Ingrese su apodo: ");
             ApodoUsuario = Console.ReadLine();
         }
         else
@@ -48,108 +50,91 @@ public class FabricaDePersonajes
             ApodoUsuario = "";
         }
 
-        //*----- CARGADO DE FECHA DE NACIMIENTO Y EDAD -----*
+        // CARGADO DE FECHA DE NACIMIENTO Y EDAD
         bool control = true;
         DateTime NacimientoUsuario = DateTime.MinValue;
         int EdadUsuario = 0;
 
         while (control)
         {
-            Console.WriteLine("Ingrese su fecha de nacimiento con formato (dd/MM/yyyy): ");
-
+            Console.Write("\nIngrese su fecha de nacimiento (dd/MM/yyyy): ");
             if (DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime FechaNacimiento))
             {
                 NacimientoUsuario = FechaNacimiento;
 
-                if (FechaNacimiento.Month > DateTime.Now.Date.Month)
-                {
-                    EdadUsuario = DateTime.Now.Date.Year - FechaNacimiento.Year - 1;
-                }
-                else
-                {
-                    if (FechaNacimiento.Month < DateTime.Now.Date.Month)
-                    {
-                        EdadUsuario = DateTime.Now.Date.Year - FechaNacimiento.Year;
-                    }
-                    else
-                    {
-                        if (FechaNacimiento.Day < DateTime.Now.Date.Day)
-                        {
-                            EdadUsuario = DateTime.Now.Date.Year - FechaNacimiento.Year - 1;
-                        }
-                        else
-                        {
-                            EdadUsuario = DateTime.Now.Date.Year - FechaNacimiento.Year;
-                        }
-                    }
-                }
+                EdadUsuario = DateTime.Now.Date.Year - FechaNacimiento.Year;
+                if (FechaNacimiento.Date > DateTime.Now.AddYears(-EdadUsuario)) EdadUsuario--;
 
                 control = false;
             }
             else
             {
-                Console.WriteLine("No se ingreso un dato valido");
+                Console.WriteLine("\n\t*----- No se ingresó un dato válido -----*");
             }
         }
 
-        //*----- ELECCION DE RAZA -----*
+        // ELECCIÓN DE RAZA
         control = true;
         string RazaUsuario = "";
 
         while (control)
         {
-            Console.WriteLine("Seleccione el numero de la raza que quiere usar: ");
-            Console.WriteLine("\n\t\t1. Humano\n\t\t2. Elfo\n\t\t3. Enano\n\t\t4. Orco\n\t\t5. Hobbit");
+            Console.WriteLine("\nSeleccione la raza de su personaje:");
+            Console.WriteLine("\n\t1. Humano\n\t2. Elfo\n\t3. Enano\n\t4. Orco\n\t5. Hobbit");
+            Console.Write("Opción: ");
 
             string numRaza = Console.ReadLine();
-
 
             if (int.TryParse(numRaza, out int elegida))
             {
                 switch (elegida)
                 {
                     case 1:
-                        control = false;
                         RazaUsuario = "Humano";
+                        control = false;
                         break;
                     case 2:
-                        control = false;
                         RazaUsuario = "Elfo";
+                        control = false;
                         break;
                     case 3:
-                        control = false;
                         RazaUsuario = "Enano";
+                        control = false;
                         break;
                     case 4:
-                        control = false;
                         RazaUsuario = "Orco";
+                        control = false;
                         break;
                     case 5:
-                        control = false;
                         RazaUsuario = "Hobbit";
+                        control = false;
                         break;
                     default:
-                        Console.WriteLine("\n\t*-----El numero ingresado no corresponde a una raza valida -----*");
+                        Console.WriteLine("\n\t*----- El número ingresado no corresponde a una raza válida -----*");
                         break;
                 }
             }
             else
             {
-                Console.WriteLine("\n\t*----- No ingreso un dato valido -----*");
+                Console.WriteLine("\n\t*----- No se ingresó un dato válido -----*");
             }
         }
 
         Datos DatosUsuario = new Datos(RazaUsuario, NombreUsuario, ApodoUsuario, NacimientoUsuario, EdadUsuario);
 
-        //*----- CARGADO DE CARACTERISTICAS DE MANERA ALEATORIA -----*
+        // CARGADO DE CARACTERÍSTICAS DE MANERA ALEATORIA
         Caracteristicas CaracteristicasUsuario = new Caracteristicas(
-            random.Next(1, 11), //Velocidad 1-10
-            random.Next(1, 6),  //Destreza 1-5
-            random.Next(1, 11), //Fuerza 1-10
-            random.Next(1, 11), //Nivel 1-10
-            random.Next(1, 11), //Armadura 1-10
-            100                 //Salud 100
+            random.Next(1, 11), // Velocidad 1-10
+            random.Next(1, 6),  // Destreza 1-5
+            random.Next(1, 11), // Fuerza 1-10
+            random.Next(1, 11), // Nivel 1-10
+            random.Next(1, 11), // Armadura 1-10
+            100                 // Salud 100
         );
+
+        Console.WriteLine("\n╔══════════════════════════════════════════════╗");
+        Console.WriteLine("║         PERSONAJE GENERADO EXITOSAMENTE      ║");
+        Console.WriteLine("╚══════════════════════════════════════════════╝");
 
         return new Personaje(DatosUsuario, CaracteristicasUsuario);
     }
