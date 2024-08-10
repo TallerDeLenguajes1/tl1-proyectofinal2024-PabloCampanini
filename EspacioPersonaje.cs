@@ -31,18 +31,17 @@ public class Personaje
     public double Ataque()
     {
         //Variable auxiliar
-        double CalculoDaño = 0;
-        int AjusteDaño = 300;
+        double CalculoAtaque = 0;
 
-        CalculoDaño = (Caracteristicas.Destreza * Caracteristicas.Fuerza * Caracteristicas.Nivel) / (AjusteDaño);
+        CalculoAtaque = (Caracteristicas.Destreza * Caracteristicas.Fuerza * Caracteristicas.Nivel);
 
         //Reduccion del daño debido a la salud
         if (Caracteristicas.Salud <= 50)
         {
-            CalculoDaño *= 0.90;
+            CalculoAtaque *= 0.90;
         }
 
-        return CalculoDaño;
+        return CalculoAtaque;
     }
 
     public double Defensa()

@@ -1,44 +1,39 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Text;
-using EspacioFabricaDePersonajes;
-using DatosYCaracteristicas;
 using EspacioPersonaje;
+using EspacioFabricaDePersonajes;
+using MostrarDatos;
+using JsonHelper;
+using EspacioTorneo;
 
 Console.OutputEncoding = Encoding.UTF8; // Establecer la codificación de la consola a UTF-8
 
-// Crear la fábrica de personajes
+// Crear fábrica de personajes
 FabricaDePersonajes fabrica = new FabricaDePersonajes();
 
-// Crear el personaje del usuario
-Personaje personajeDelUsuario = fabrica.CrearPersonajeUsuario();
+// Crear un personaje para el usuario
+Personaje personajeUsuario = fabrica.CrearPersonajeUsuario();
 
-
-// Mostrar los datos del personaje del usuario
-Console.WriteLine("\n\t*---------- DATOS DE SU PERSONAJE ----------*");
-MostrarPersonaje(personajeDelUsuario);
-
-// Crear la lista de enemigos
+// Crear personajes enemigos
 List<Personaje> enemigos = fabrica.CrearEnemigos();
-fabrica.Enemigos = enemigos;
 
-// Mostrar los datos de los enemigos
-Console.WriteLine("\n\t*---------- LISTA DE ENEMIGOS ----------*");
-foreach (var enemigo in enemigos)
+enemigos.Add(personajeUsuario);
+
+// Mostrar datos del personaje del usuario
+MostrarPersonaje mostrar = new MostrarPersonaje();
+mostrar.MostrarDatosPersonaje(personajeUsuario);
+
+foreach (Personaje personaje in enemigos)
 {
-    MostrarPersonaje(enemigo);
+    mostrar.MostrarDatosPersonaje(personaje);
 }
 
-static void MostrarPersonaje(Personaje personaje)
-{
-    Console.WriteLine($"\nNombre: {personaje.Datos.Nombre}");
-    Console.WriteLine($"Apodo: {personaje.Datos.Apodo}");
-    Console.WriteLine($"Fecha de Nacimiento: {personaje.Datos.FechaDeNacimiento.ToString("dd/MM/yyyy")}");
-    Console.WriteLine($"Edad: {personaje.Datos.Edad}");
-    Console.WriteLine($"Raza: {personaje.Datos.Raza}");
-    Console.WriteLine($"Velocidad: {personaje.Caracteristicas.Velocidad}");
-    Console.WriteLine($"Destreza: {personaje.Caracteristicas.Destreza}");
-    Console.WriteLine($"Fuerza: {personaje.Caracteristicas.Fuerza}");
-    Console.WriteLine($"Nivel: {personaje.Caracteristicas.Nivel}");
-    Console.WriteLine($"Armadura: {personaje.Caracteristicas.Armadura}");
-    Console.WriteLine($"Salud: {personaje.Caracteristicas.Salud}");
-}
+// Realizar el torneo
+Torneo torneo = new Torneo();
+Personaje ganador = await torneo.RealizarTorneo(enemigos);
+
+// Mostrar datos del ganador
+Console.WriteLine("\nEl ganador del torneo es:");
+mostrar.MostrarDatosPersonaje(ganador);
+
+string hola = Console.ReadLine();

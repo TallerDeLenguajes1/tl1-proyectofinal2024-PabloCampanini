@@ -27,7 +27,7 @@ public class Sorteo
             for (int i = 0; i < 2; i++)
             {
                 Combate.Add(ListaSorteada[indice]);
-                    indice++;
+                indice++;
             }
 
             Grupos.Add(Combate);

@@ -1,32 +1,75 @@
 namespace EspacioPelea;
 
 using EspacioPersonaje;
+using EspacioDados;
+using ConectarApi;
 
 public class Batalla
 {
     //Metodo 
-    public void TurnoBatalla(Personaje Ataca, Personaje Defiende)
+    public async Task TurnoBatalla(Personaje Ataca, Personaje Defiende)
     {
-        int Daño = (int)(Ataca.Ataque() - Defiende.Defensa());
+        TirarDados TirarDados = new TirarDados();
+        Dados DadosAtacante = await TirarDados.GetDados(1, 20);
+        Dados DadosDefensor = await TirarDados.GetDados(1, 20);
 
-        //Al daño luego lo modificare con una api que proporciona tiradas de dados para obtener probabilidades de criticos o de esquivadas
+        int Daño;
 
-        Defiende.Caracteristicas.Salud -= Daño;
+        if (DadosAtacante.Result > DadosDefensor.Result)
+        {
+            Console.WriteLine("El atacante obtiene una bonificacion de daño y hace un ataque crítico");
+
+            Daño = (int)((Ataca.Ataque() * 1.1) - Defiende.Defensa());
+            
+            if (Daño >= 100)
+            {
+                Daño = 25;
+            }
+            else
+            {
+                if (Daño < 10)
+                {
+                    Daño = 10;
+                }
+            }
+
+            Defiende.Caracteristicas.Salud -= Daño;
+        }
+        else
+        {
+            Console.WriteLine("El defensor obtiene una bonificacion de defensa");
+
+            Daño = (int)(Ataca.Ataque() - (Defiende.Defensa() * 1.1));
+
+            if (Daño >= 100)
+            {
+                Daño = 25;
+            }
+            else
+            {
+                if (Daño < 10)
+                {
+                    Daño = 10;
+                }
+            }
+
+            Defiende.Caracteristicas.Salud -= Daño;
+        }
     }
 
-    public Personaje CombateTotal(Personaje Ataca, Personaje Defiende)
+    public async Task<Personaje> CombateTotal(Personaje Ataca, Personaje Defiende)
     {
-        while (Ataca.Caracteristicas.Salud != 0 && Defiende.Caracteristicas.Salud != 0)
+        while (Ataca.Caracteristicas.Salud > 0 && Defiende.Caracteristicas.Salud > 0)
         {
-            TurnoBatalla(Ataca, Defiende);
+            await TurnoBatalla(Ataca, Defiende);
 
-            if (Defiende.Caracteristicas.Salud != 0)
+            if (Defiende.Caracteristicas.Salud > 0)
             {
-                TurnoBatalla(Defiende, Ataca);
+                await TurnoBatalla(Defiende, Ataca);
             }
         }
 
-        if (Defiende.Caracteristicas.Salud != 0)
+        if (Defiende.Caracteristicas.Salud > 0)
         {
             return Defiende;
         }
